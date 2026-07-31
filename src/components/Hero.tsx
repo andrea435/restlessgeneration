@@ -37,13 +37,13 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pt-28 lg:px-10">
         <div className="max-w-xl">
-          <span className="mb-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-green-bright">
-            <span className="h-px w-5 bg-green-bright" />
-            Restless Generation · Est. 2020
+          <span className="mb-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-white/80">
+            <span className="h-px w-5 bg-green-bright text-white" />
+            Est. 2020
           </span>
           {/* Placeholder headline — swap for the copy you want here */}
-          <h1 className="font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-            Headline goes here
+          <h1 className="font-Urbanist text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+           RESTLESS GENERATION
           </h1>
           <p className="mt-6 max-w-md text-base text-white/80 sm:text-lg">
             Supporting line about what Restless Generation supplies and services goes here.

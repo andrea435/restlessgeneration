@@ -94,9 +94,28 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
-
+ <div className="border-b border-[#26400f]/15 bg-[#faf9f4]">
+        <div className="mx-auto max-w-6xl px-6 py-9 lg:px-10">
+          <div className="grid grid-cols-2 gap-y-7 sm:grid-cols-4 sm:gap-y-0">
+            {STATS.map((stat, i) => (
+              <div
+                key={stat.label}
+                className={`px-0 sm:px-6 ${
+                  i !== 0 ? "sm:border-l sm:border-[#26400f]/15" : ""
+                }`}
+              >
+                <strong className="block font-display text-2xl text-[#26400f]">
+                  {stat.value}
+                </strong>
+                <span className="text-sm text-[#4c7a20]">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
       {/* Why Restless Generation */}
       <section className="bg-[#26400f] py-20 lg:py-24">
+        
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:px-10">
           <div>
             <span className="mb-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-[#c07a37]">
@@ -151,25 +170,7 @@ export default function HomeSections() {
         </div>
       </div>
 
-      <div className="border-b border-[#26400f]/15 bg-[#faf9f4]">
-        <div className="mx-auto max-w-6xl px-6 py-9 lg:px-10">
-          <div className="grid grid-cols-2 gap-y-7 sm:grid-cols-4 sm:gap-y-0">
-            {STATS.map((stat, i) => (
-              <div
-                key={stat.label}
-                className={`px-0 sm:px-6 ${
-                  i !== 0 ? "sm:border-l sm:border-[#26400f]/15" : ""
-                }`}
-              >
-                <strong className="block font-display text-2xl text-[#26400f]">
-                  {stat.value}
-                </strong>
-                <span className="text-sm text-[#4c7a20]">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+     
     </>
   );
 }
