@@ -70,7 +70,7 @@ export default function ContactForm({ services }: ContactFormProps) {
     );
 
     window.location.href =
-      `mailto:restlessgenearation20@gmail.com` +
+      `mailto:restlessgeneration20@gmail.com` +
       `?subject=${subject}&body=${body}`;
   }
 

@@ -27,3 +27,75 @@ body {
 .animate-marquee {
   animation: marquee 26s linear infinite;
 }
+/* ── Restless Generation motion ────────────────────────────────────────────
+   Append this to app/globals.css (below the @tailwind directives).
+   Every animation is switched off under prefers-reduced-motion at the bottom.
+*/
+
+@keyframes rg-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rg-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) scale(1.12);
+  }
+}
+
+@keyframes rg-pan {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-6%);
+  }
+}
+
+@keyframes rg-pulse-rule {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.rg-marquee-track {
+  animation: rg-marquee 38s linear infinite;
+}
+
+/* Slows the ticker instead of freezing it, so it never looks broken. */
+.rg-marquee:hover .rg-marquee-track {
+  animation-duration: 90s;
+}
+
+.rg-drift {
+  animation: rg-drift 18s ease-in-out infinite;
+}
+
+.rg-pan {
+  animation: rg-pan 40s ease-in-out infinite alternate;
+}
+
+.rg-pulse-rule {
+  animation: rg-pulse-rule 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rg-marquee-track,
+  .rg-drift,
+  .rg-pan,
+  .rg-pulse-rule {
+    animation: none !important;
+  }
+}

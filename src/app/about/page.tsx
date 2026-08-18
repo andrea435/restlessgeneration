@@ -2,47 +2,93 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageBanner from "@/components/PageBanner";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "About | Restless Generation",
   description:
-    "Discover Restless Generation's mission, vision, values, governance and compliance credentials.",
+    "Who Restless Generation is, what we supply, how we are governed, and the compliance credentials we hold.",
 };
+
+const CREDENTIALS = [
+  { label: "Registration", value: "CIPC registered" },
+  { label: "B-BBEE", value: "Level 1 contributor" },
+  { label: "Base", value: "South Africa" },
+  { label: "Reach", value: "Southern Africa" },
+];
+
+const TICKER = [
+  "Diversified supply",
+  "Manufacturing",
+  "Mining services",
+  "Technology",
+  "Level 1 B-BBEE",
+  "Zero harm",
+  "Youth development",
+];
+
+const CAPABILITIES = [
+  {
+    name: "Diversified supply",
+    description:
+      "Sourcing and delivery of consumables, equipment and general goods against client specification and schedule.",
+  },
+  {
+    name: "Manufacturing",
+    description:
+      "Production and fabrication work delivered to agreed standards, tolerances and turnaround times.",
+  },
+  {
+    name: "Mining services",
+    description:
+      "Support to mining operations, from supply contracts through to on-site service delivery.",
+  },
+  {
+    name: "Technology",
+    description:
+      "Systems and technology solutions built or configured around the way a client already works.",
+  },
+];
 
 const VALUES = [
   {
-    number: "01",
+    keyword: "Service",
     title: "Customer excellence",
     description:
       "We provide responsive, dependable service built around each client's operational requirements.",
   },
   {
-    number: "02",
+    keyword: "Conduct",
     title: "Integrity",
     description:
       "We conduct our business honestly, professionally and with accountability at every level.",
   },
   {
-    number: "03",
+    keyword: "People",
     title: "Social responsibility",
     description:
       "We create opportunities that support communities and unlock the potential of young people.",
   },
   {
-    number: "04",
+    keyword: "Growth",
     title: "Sustainable development",
     description:
       "We pursue responsible growth that creates lasting economic, social and environmental value.",
   },
 ];
 
+const REPORTS = [
+  { area: "Operations", role: "Operations Manager" },
+  { area: "Commercial", role: "Sales Manager" },
+];
+
 const DOCS = [
-  "CIPC company registration documents",
-  "Level 1 B-BBEE affidavit",
-  "SARS tax clearance",
-  "SARS letter of good standing",
-  "Company banking details",
-  "COIDA, UIF and legal liability documents",
+  { name: "CIPC company registration documents", status: "Held" },
+  { name: "Level 1 B-BBEE affidavit", status: "Held" },
+  { name: "SARS tax clearance", status: "Held" },
+  { name: "SARS letter of good standing", status: "Held" },
+  { name: "Company banking details", status: "On request" },
+  { name: "COIDA, UIF and legal liability documents", status: "Held" },
 ];
 
 function SectionLabel({
@@ -54,13 +100,13 @@ function SectionLabel({
 }) {
   return (
     <div
-      className={`mb-5 flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.16em] ${
-        light ? "text-[#b7df76]" : "text-[#517934]"
+      className={`flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] ${
+        light ? "text-[#b7df76]" : "text-[#759c42]"
       }`}
     >
       <span
-        className={`h-px w-8 ${
-          light ? "bg-[#b7df76]" : "bg-[#517934]"
+        className={`rg-pulse-rule h-px w-6 ${
+          light ? "bg-[#b7df76]" : "bg-[#c07a37]"
         }`}
       />
       {children}
@@ -73,329 +119,368 @@ export default function AboutPage() {
     <>
       <Header />
 
-      <main className="overflow-hidden bg-[#f7f5ee]">
+      <main className="bg-white">
         <PageBanner
-          eyebrow="About Restless Generation"
-          title="Built to supply. Driven to create opportunity."
-          lead="We provide diversified supply, manufacturing, mining and technology solutions across South Africa, with the ambition to expand throughout Southern Africa."
+          eyebrow="About"
+          title="Restless Generation"
+          lead="A South African supply, manufacturing, mining and technology business, built to deliver dependably and to open doors for young people."
         />
 
-        {/* Introduction */}
-        <section className="relative z-10 -mt-8 px-6 lg:-mt-12 lg:px-10">
-          <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[2rem] border border-[#26400f]/10 bg-white shadow-[0_24px_70px_rgba(38,64,15,0.12)] lg:grid-cols-[1.3fr_0.7fr]">
-            <div className="p-8 sm:p-10 lg:p-14">
-              <SectionLabel>Who we are</SectionLabel>
+        {/* Credentials strip */}
+        <section className="border-b border-[#26400f]/12 bg-[#26400f]/[0.04] px-6 lg:px-10">
+          <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-y-7 py-8 sm:grid-cols-4 sm:gap-y-0 lg:py-9">
+            {CREDENTIALS.map((item, index) => (
+              <Reveal
+                key={item.label}
+                delay={index * 90}
+                className="border-[#26400f]/15 sm:border-l sm:pl-6 sm:first:border-l-0 sm:first:pl-0"
+              >
+                <dt className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[#759c42]">
+                  {item.label}
+                </dt>
+                <dd className="mt-1.5 font-display text-lg font-semibold text-[#26400f] sm:text-xl">
+                  {item.value}
+                </dd>
+              </Reveal>
+            ))}
+          </dl>
+        </section>
 
-              <h2 className="max-w-2xl font-display text-3xl font-bold leading-tight text-[#26400f] sm:text-4xl">
-                A purposeful business committed to quality, innovation and
-                youth development.
-              </h2>
+        {/* Ticker */}
+        <section
+          aria-hidden="true"
+          className="rg-marquee overflow-hidden border-b border-[#26400f]/12 bg-[#26400f] py-4"
+        >
+          <div className="rg-marquee-track flex w-max items-center gap-8 whitespace-nowrap">
+            {[0, 1].map((copy) => (
+              <div key={copy} className="flex items-center gap-8">
+                {TICKER.map((item) => (
+                  <span
+                    key={item}
+                    className="flex items-center gap-8 font-mono text-xs uppercase tracking-[0.22em] text-[#b7df76]"
+                  >
+                    {item}
+                    <span className="h-1.5 w-1.5 rotate-45 bg-[#c07a37]" />
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
 
-              <p className="mt-6 max-w-2xl text-base leading-8 text-[#536347]">
-                Restless Generation was established to play a meaningful role
-                in the development of South Africa&apos;s economy. We combine
-                practical capability, industry knowledge and an entrepreneurial
-                mindset to provide reliable products and services.
-              </p>
+        {/* Who we are */}
+        <section className="px-6 py-16 lg:px-10 lg:py-20">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+            <div>
+              <Reveal>
+                <SectionLabel>Who we are</SectionLabel>
 
-              <p className="mt-4 max-w-2xl text-base leading-8 text-[#536347]">
-                Our long-term goal is to build a respected national and
-                international business while using our resources, skills and
-                passion to unleash the power of youth to change the world.
-              </p>
+                <p className="mt-5 max-w-[34ch] border-l-2 border-[#8bc63f] pl-6 font-display text-2xl font-medium leading-[1.4] text-[#26400f] sm:text-[1.75rem]">
+                  Practical capability, industry knowledge and an
+                  entrepreneurial mindset.
+                </p>
+              </Reveal>
+
+              <Reveal delay={120}>
+                <p className="mt-7 max-w-[58ch] text-[0.95rem] leading-7 text-[#536347]">
+                  We work across supply, manufacturing, mining and technology
+                  markets, taking on the work that keeps operations running:
+                  the goods that have to arrive, the parts that have to be
+                  made, the systems that have to hold up. Clients deal with a
+                  team that understands the standard the work is measured
+                  against.
+                </p>
+
+                <p className="mt-4 max-w-[58ch] text-[0.95rem] leading-7 text-[#536347]">
+                  The longer-term goal is to build a respected national and
+                  international business while using our resources, skills and
+                  passion to unleash the power of youth to change the world.
+                  That purpose is not separate from how we trade. It shapes who
+                  we hire, who we train and who we buy from.
+                </p>
+              </Reveal>
             </div>
 
-            <div className="relative flex min-h-[320px] flex-col justify-end overflow-hidden bg-[#26400f] p-8 text-white sm:p-10 lg:p-12">
-              <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full border-[42px] border-[#8bc63f]/20" />
-              <div className="absolute bottom-10 right-10 h-24 w-24 rounded-full bg-[#c07a37]/20 blur-xl" />
+            {/* Swap this panel for a site or team photograph when you have one. */}
+            <Reveal delay={200}>
+              <div className="relative flex h-full min-h-[300px] flex-col justify-end overflow-hidden bg-[#26400f] p-8 sm:p-10">
+                <div className="absolute inset-0 bg-[radial-gradient(#8bc63f_1px,transparent_1px)] [background-size:18px_18px] opacity-[0.14]" />
+                <div className="rg-drift absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#8bc63f]/20 blur-2xl" />
 
-              <p className="relative text-sm uppercase tracking-[0.18em] text-[#b7df76]">
-                Our purpose
-              </p>
+                <p className="relative font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[#b7df76]">
+                  Our purpose
+                </p>
 
-              <p className="relative mt-4 font-display text-2xl font-semibold leading-snug sm:text-3xl">
-                Creating sustainable value while opening doors for the next
-                generation.
-              </p>
+                <p className="relative mt-4 font-display text-2xl font-semibold leading-snug text-white sm:text-[1.75rem]">
+                  Creating sustainable value while opening doors for the next
+                  generation.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* What we do */}
+        <section className="border-y border-[#26400f]/12 bg-[#f7f5ee] px-6 py-16 lg:px-10 lg:py-20">
+          <div className="mx-auto max-w-6xl">
+            <Reveal>
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <SectionLabel>What we do</SectionLabel>
+                  <h2 className="mt-4 max-w-xl font-display text-3xl font-bold leading-tight text-[#26400f] sm:text-[2.25rem]">
+                    Four lines of business, one delivery standard.
+                  </h2>
+                </div>
+
+                <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[#759c42]">
+                  Capabilities
+                </span>
+              </div>
+            </Reveal>
+
+            <div className="mt-9 border-t border-[#26400f]/15">
+              {CAPABILITIES.map((item, index) => (
+                <Reveal key={item.name} delay={index * 80}>
+                  <article className="group relative grid gap-2 overflow-hidden border-b border-[#26400f]/15 py-6 md:grid-cols-[0.38fr_1fr] md:gap-10 md:px-5">
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-y-0 left-0 w-0 bg-[#e7efdc] transition-[width] duration-500 ease-out group-hover:w-full motion-reduce:transition-none"
+                    />
+
+                    <h3 className="relative flex items-center gap-3 font-display text-xl font-semibold text-[#26400f] transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transform-none">
+                      <span
+                        aria-hidden="true"
+                        className="h-1.5 w-1.5 shrink-0 rotate-45 bg-[#c07a37] transition-transform duration-300 group-hover:scale-[1.8] motion-reduce:transform-none"
+                      />
+                      {item.name}
+                    </h3>
+
+                    <p className="relative max-w-[58ch] text-[0.95rem] leading-7 text-[#536347]">
+                      {item.description}
+                    </p>
+                  </article>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Vision and mission */}
-        <section className="px-6 py-24 lg:px-10 lg:py-32">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid items-end gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-              <div>
-                <SectionLabel>Why we exist</SectionLabel>
+        <section className="relative overflow-hidden bg-[#26400f] px-6 py-20 lg:px-10 lg:py-28">
+          <div className="rg-drift pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-[#8bc63f]/10 blur-3xl" />
 
-                <h2 className="font-display text-4xl font-bold leading-[1.05] text-[#26400f] sm:text-5xl">
-                  Restless by name.
-                  <span className="block text-[#759c42]">
-                    Purposeful by design.
-                  </span>
-                </h2>
-              </div>
+          <span
+            aria-hidden="true"
+            className="rg-pan pointer-events-none absolute -bottom-[3vw] left-0 select-none font-display text-[22vw] font-bold leading-none tracking-tight text-white/[0.035]"
+          >
+            Restless
+          </span>
 
-              <p className="max-w-2xl text-base leading-8 text-[#536347] lg:ml-auto">
-                Our vision and mission guide how we grow, how we serve our
-                clients and how we contribute to the communities in which we
-                operate.
+          <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:gap-16">
+            <Reveal className="md:border-r md:border-white/15 md:pr-16">
+              <SectionLabel light>Vision</SectionLabel>
+
+              <h2 className="mt-6 max-w-md font-display text-3xl font-semibold leading-snug text-white sm:text-[2rem]">
+                To become an internationally acclaimed company.
+              </h2>
+
+              <p className="mt-5 max-w-md text-base leading-8 text-white/70">
+                We aim to achieve this by promoting and unleashing the power of
+                youth to change the world.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              <article className="group relative min-h-[310px] overflow-hidden rounded-[2rem] bg-[#26400f] p-8 text-white sm:p-10">
-                <span className="absolute right-7 top-4 font-display text-[7rem] font-bold leading-none text-white/[0.05]">
-                  01
-                </span>
+            <Reveal delay={150}>
+              <SectionLabel light>Mission</SectionLabel>
 
-                <div className="relative flex h-full flex-col justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8bc63f] text-xl text-[#26400f]">
-                    ✦
-                  </div>
+              <h2 className="mt-6 max-w-md font-display text-3xl font-semibold leading-snug text-white sm:text-[2rem]">
+                To deliver quality products and dependable services.
+              </h2>
 
-                  <div className="mt-20">
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#b7df76]">
-                      Vision
-                    </p>
-
-                    <h3 className="mt-4 max-w-md font-display text-2xl font-semibold leading-snug">
-                      To become an internationally acclaimed company.
-                    </h3>
-
-                    <p className="mt-4 max-w-md leading-7 text-white/70">
-                      We aim to achieve this by promoting and unleashing the
-                      power of youth to change the world.
-                    </p>
-                  </div>
-                </div>
-              </article>
-
-              <article className="group relative min-h-[310px] overflow-hidden rounded-[2rem] border border-[#26400f]/10 bg-[#e7efdc] p-8 sm:p-10">
-                <span className="absolute right-7 top-4 font-display text-[7rem] font-bold leading-none text-[#26400f]/[0.05]">
-                  02
-                </span>
-
-                <div className="relative flex h-full flex-col justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#26400f] text-xl text-white">
-                    ↗
-                  </div>
-
-                  <div className="mt-20">
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#517934]">
-                      Mission
-                    </p>
-
-                    <h3 className="mt-4 max-w-md font-display text-2xl font-semibold leading-snug text-[#26400f]">
-                      To deliver quality products and dependable services.
-                    </h3>
-
-                    <p className="mt-4 max-w-md leading-7 text-[#536347]">
-                      We serve clients across mining, manufacturing, technology
-                      and diversified supply markets.
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
+              <p className="mt-5 max-w-md text-base leading-8 text-white/70">
+                We serve clients across mining, manufacturing, technology and
+                diversified supply markets.
+              </p>
+            </Reveal>
           </div>
         </section>
 
         {/* Values */}
-        <section className="border-y border-[#26400f]/10 bg-white px-6 py-24 lg:px-10 lg:py-28">
+        <section className="px-6 py-16 lg:px-10 lg:py-20">
           <div className="mx-auto max-w-6xl">
-            <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
-              <div>
-                <SectionLabel>What guides us</SectionLabel>
+            <Reveal>
+              <div className="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <SectionLabel>What guides us</SectionLabel>
+                  <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-[#26400f] sm:text-[2.25rem]">
+                    Our values
+                  </h2>
+                </div>
 
-                <h2 className="font-display text-4xl font-bold text-[#26400f]">
-                  Our values
-                </h2>
-
-                <p className="mt-5 max-w-md leading-7 text-[#536347]">
-                  These principles shape our decisions, relationships and
-                  approach to service delivery.
+                <p className="max-w-sm text-[0.95rem] leading-7 text-[#536347]">
+                  These principles shape our decisions, our relationships and
+                  how we deliver.
                 </p>
               </div>
+            </Reveal>
 
-              <div className="grid gap-px overflow-hidden rounded-[2rem] border border-[#26400f]/10 bg-[#26400f]/10 sm:grid-cols-2">
-                {VALUES.map((value) => (
-                  <article
-                    key={value.number}
-                    className="group min-h-[250px] bg-[#faf9f4] p-7 transition duration-300 hover:bg-[#edf3e5] sm:p-8"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-semibold text-[#759c42]">
-                        {value.number}
-                      </span>
+            <div className="mt-9 grid gap-px border border-[#26400f]/15 bg-[#26400f]/15 sm:grid-cols-2">
+              {VALUES.map((value, index) => (
+                <Reveal
+                  key={value.title}
+                  delay={index * 90}
+                  className={index % 2 === 0 ? "bg-white" : "bg-[#faf9f4]"}
+                >
+                  <article className="group h-full p-7 transition-colors duration-300 hover:bg-[#e7efdc] sm:p-8">
+                    <span className="inline-flex bg-[#26400f] px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#b7df76] transition-colors duration-300 group-hover:bg-[#c07a37] group-hover:text-white">
+                      {value.keyword}
+                    </span>
 
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#26400f]/15 text-[#26400f] transition duration-300 group-hover:bg-[#26400f] group-hover:text-white">
-                        ↗
-                      </span>
-                    </div>
-
-                    <h3 className="mt-14 font-display text-xl font-semibold text-[#26400f]">
+                    <h3 className="mt-4 font-display text-xl font-semibold text-[#26400f]">
                       {value.title}
                     </h3>
 
-                    <p className="mt-3 text-sm leading-6 text-[#536347]">
+                    <p className="mt-2.5 max-w-[46ch] text-[0.95rem] leading-7 text-[#536347]">
                       {value.description}
                     </p>
                   </article>
-                ))}
-              </div>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Governance */}
-        <section className="px-6 py-24 lg:px-10 lg:py-32">
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-2xl">
+        <section className="border-y border-[#26400f]/12 bg-[#f7f5ee] px-6 py-16 lg:px-10 lg:py-20">
+          <div className="mx-auto grid max-w-6xl gap-9 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
               <SectionLabel>Governance</SectionLabel>
 
-              <h2 className="font-display text-4xl font-bold text-[#26400f]">
+              <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-[#26400f] sm:text-[2.25rem]">
                 Clear leadership and accountability
               </h2>
 
-              <p className="mt-5 leading-7 text-[#536347]">
-                Our organisational structure supports effective decision-making,
-                commercial growth and efficient service delivery.
+              <p className="mt-4 max-w-[44ch] text-[0.95rem] leading-7 text-[#536347]">
+                Our structure keeps decision-making short. Operational and
+                commercial responsibility sit with named managers who report
+                directly to the Director.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="mt-14 rounded-[2rem] border border-[#26400f]/10 bg-white p-6 shadow-[0_20px_60px_rgba(38,64,15,0.06)] sm:p-10 lg:p-14">
-              <div className="mx-auto max-w-4xl">
-                <div className="mx-auto max-w-sm rounded-2xl bg-[#26400f] p-6 text-center text-white shadow-lg">
-                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[#b7df76]">
+            <Reveal delay={150}>
+              <div className="border border-[#26400f]/15 bg-white p-6 sm:p-8">
+                <div className="border-t-2 border-[#26400f] pt-4">
+                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[#759c42]">
                     Executive leadership
                   </span>
 
-                  <h3 className="mt-3 font-display text-xl font-semibold">
-                    Director
-                  </h3>
-
-                  <p className="mt-1 text-sm text-white/70">NP Xulu</p>
+                  <div className="mt-2 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <h3 className="font-display text-2xl font-semibold text-[#26400f]">
+                      Director
+                    </h3>
+                    <p className="text-base text-[#536347]">NP Xulu</p>
+                  </div>
                 </div>
 
-                <div className="mx-auto h-10 w-px bg-[#26400f]/25" />
+                <div className="mt-5 border-l border-[#26400f]/20 pl-6 sm:pl-8">
+                  {REPORTS.map((item) => (
+                    <div
+                      key={item.role}
+                      className="relative border-b border-[#26400f]/12 py-4 last:border-b-0 last:pb-0"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="absolute -left-6 top-1/2 h-px w-4 bg-[#26400f]/20 sm:-left-8 sm:w-6"
+                      />
 
-                <div className="relative grid gap-5 md:grid-cols-2 md:gap-10">
-                  <div className="absolute left-1/4 right-1/4 top-0 hidden h-px bg-[#26400f]/25 md:block" />
-
-                  <div className="relative pt-5 md:pt-10">
-                    <div className="absolute left-1/2 top-0 hidden h-10 w-px -translate-x-1/2 bg-[#26400f]/25 md:block" />
-
-                    <div className="rounded-2xl border border-[#26400f]/15 bg-[#f7f5ee] p-6 text-center">
-                      <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[#759c42]">
-                        Operations
+                      <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[#c07a37]">
+                        {item.area}
                       </span>
 
-                      <h3 className="mt-3 font-display text-lg font-semibold text-[#26400f]">
-                        Operations Manager
+                      <h3 className="mt-1.5 font-display text-lg font-semibold text-[#26400f]">
+                        {item.role}
                       </h3>
                     </div>
-                  </div>
-
-                  <div className="relative pt-5 md:pt-10">
-                    <div className="absolute left-1/2 top-0 hidden h-10 w-px -translate-x-1/2 bg-[#26400f]/25 md:block" />
-
-                    <div className="rounded-2xl border border-[#26400f]/15 bg-[#f7f5ee] p-6 text-center">
-                      <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[#759c42]">
-                        Commercial
-                      </span>
-
-                      <h3 className="mt-3 font-display text-lg font-semibold text-[#26400f]">
-                        Sales Manager
-                      </h3>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </section>
 
         {/* HSEQ */}
-        <section className="px-6 pb-24 lg:px-10 lg:pb-32">
-          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-[#26400f] px-7 py-16 sm:px-12 lg:px-16 lg:py-20">
-            <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#8bc63f]/10" />
-            <div className="absolute -bottom-32 left-1/3 h-72 w-72 rounded-full bg-[#c07a37]/10 blur-3xl" />
+        <section className="relative overflow-hidden bg-[#8bc63f] px-6 py-16 lg:px-10 lg:py-20">
+          <div className="absolute inset-0 bg-[radial-gradient(#26400f_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.12]" />
+          <div className="rg-drift absolute -bottom-24 right-0 h-72 w-72 rounded-full bg-[#e7efdc]/40 blur-3xl" />
 
-            <div className="relative grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
-              <div>
-                <SectionLabel light>
-                  Health, safety, quality and environment
-                </SectionLabel>
-
-                <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                  Zero harm is the standard.
-                </h2>
+          <div className="relative mx-auto max-w-6xl">
+            <Reveal>
+              <div className="flex items-center gap-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#26400f]">
+                <span className="rg-pulse-rule h-px w-6 bg-[#26400f]" />
+                Health, safety, quality and environment
               </div>
 
-              <blockquote className="border-l-2 border-[#8bc63f] pl-6 font-display text-xl font-medium leading-relaxed text-white/90 sm:text-2xl">
-                We are committed to continual improvement toward zero harm to
-                people, the environment and property, while developing young
-                people and supporting sustainable growth.
+              <blockquote className="mt-6 max-w-4xl font-display text-2xl font-semibold leading-[1.35] text-[#26400f] sm:text-[2.1rem]">
+                Zero harm is the standard. We are committed to continual
+                improvement toward zero harm to people, the environment and
+                property, while developing young people and supporting
+                sustainable growth.
               </blockquote>
-            </div>
+            </Reveal>
           </div>
         </section>
 
         {/* Quality and compliance */}
-        <section className="bg-[#ebe9df] px-6 py-24 lg:px-10 lg:py-28">
-          <div className="mx-auto max-w-6xl">
-            <SectionLabel>Quality and compliance</SectionLabel>
+        <section className="px-6 py-16 lg:px-10 lg:py-20">
+          <div className="mx-auto grid max-w-6xl gap-9 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <Reveal>
+              <SectionLabel>Quality and compliance</SectionLabel>
 
-            <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-              <div>
-                <h2 className="font-display text-4xl font-bold leading-tight text-[#26400f]">
-                  Built on credible standards and dependable delivery.
-                </h2>
+              <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-[#26400f] sm:text-[2.25rem]">
+                Credentials you can check before you buy.
+              </h2>
 
-                <p className="mt-6 leading-8 text-[#536347]">
-                  Our products and services subscribe to recognised standards
-                  of excellence. Solutions are delivered according to
-                  international standards or developed and validated against
-                  specific client and market requirements.
-                </p>
+              <p className="mt-4 max-w-[44ch] text-[0.95rem] leading-7 text-[#536347]">
+                Our products and services subscribe to recognised standards of
+                excellence, delivered to international standards or validated
+                against specific client and market requirements.
+              </p>
 
-                <div className="mt-8 rounded-2xl border border-[#26400f]/10 bg-white/60 p-6">
-                  <p className="font-display text-lg font-semibold text-[#26400f]">
-                    Documentation availability
-                  </p>
+              <p className="mt-3 max-w-[44ch] text-[0.95rem] leading-7 text-[#536347]">
+                Supporting documentation is supplied on request and matched to
+                the client, project and type of service.
+              </p>
+            </Reveal>
 
-                  <p className="mt-2 text-sm leading-6 text-[#536347]">
-                    Supporting compliance documentation is provided on request
-                    and matched to the client, project and type of service.
-                  </p>
-                </div>
+            <div className="border border-[#26400f]/15">
+              <div className="flex items-center justify-between bg-[#26400f] px-5 py-3 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[#b7df76] sm:px-6">
+                <span>Document</span>
+                <span>Status</span>
               </div>
 
-              <div className="overflow-hidden rounded-[2rem] border border-[#26400f]/10 bg-white">
-                <div className="border-b border-[#26400f]/10 px-6 py-5 sm:px-8">
-                  <p className="font-display text-xl font-semibold text-[#26400f]">
-                    Compliance documents
-                  </p>
-                </div>
+              {DOCS.map((doc, index) => (
+                <Reveal
+                  key={doc.name}
+                  delay={index * 60}
+                  className={index % 2 === 1 ? "bg-[#faf9f4]" : "bg-white"}
+                >
+                  <div className="group flex items-baseline justify-between gap-6 border-t border-[#26400f]/12 px-5 py-4 transition-colors duration-300 hover:bg-[#e7efdc] sm:px-6">
+                    <span className="max-w-[38ch] text-[0.95rem] font-medium leading-6 text-[#26400f] transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transform-none">
+                      {doc.name}
+                    </span>
 
-                <ul className="divide-y divide-[#26400f]/10">
-                  {DOCS.map((doc, index) => (
-                    <li
-                      key={doc}
-                      className="flex items-center gap-4 px-6 py-5 transition hover:bg-[#f5f7f1] sm:px-8"
+                    <span
+                      className={`shrink-0 font-mono text-[0.65rem] uppercase tracking-[0.16em] ${
+                        doc.status === "Held"
+                          ? "text-[#517934]"
+                          : "text-[#c07a37]"
+                      }`}
                     >
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e7efdc] font-mono text-[0.65rem] font-bold text-[#517934]">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-
-                      <span className="text-sm font-medium text-[#26400f]">
-                        {doc}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                      {doc.status}
+                    </span>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </div>
         </section>
