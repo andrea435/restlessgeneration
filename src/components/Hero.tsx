@@ -46,7 +46,7 @@ export default function Hero() {
            RESTLESS GENERATION
           </h1>
           <p className="mt-6 max-w-md text-base text-white/80 sm:text-lg">
-            Supporting line about what Restless Generation supplies and services goes here.
+            Unleashing the power of the youth to change the world
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
