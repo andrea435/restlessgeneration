@@ -32,7 +32,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Bottom fade so footer/next section reads cleanly */}
+  
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-cream to-transparent" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pt-28 lg:px-10">
@@ -41,7 +41,7 @@ export default function Hero() {
             <span className="h-px w-5 bg-green-bright text-white" />
             Est. 2020
           </span>
-          {/* Placeholder headline — swap for the copy you want here */}
+          
           <h1 className="font-Urbanist text-4xl font-bold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
            RESTLESS GENERATION
           </h1>
