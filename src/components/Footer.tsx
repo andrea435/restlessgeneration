@@ -32,7 +32,7 @@ const CONTACT: Array<{
   {
     label: "Call us",
     values: [
-      { text: "+27 78 088 2172", href: "tel:+27780882172" },
+      
       { text: "+27 71 394 2892", href: "tel:+27713942892" },
     ],
   },
