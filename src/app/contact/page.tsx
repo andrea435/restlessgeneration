@@ -148,12 +148,7 @@ export default function ContactPage() {
 
                 <div className="mt-9 space-y-3">
                   <DetailCard icon={PHONE_ICON} label="Call us">
-                    <a
-                      href="tel:+27780882172"
-                      className="block font-semibold text-white underline decoration-[#8bc63f] decoration-2 underline-offset-4 transition-colors duration-300 hover:text-[#8bc63f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8bc63f]"
-                    >
-                      +27 78 088 2172
-                    </a>
+                  
                     <a
                       href="tel:+27713942892"
                       className="block font-semibold text-white underline decoration-[#8bc63f] decoration-2 underline-offset-4 transition-colors duration-300 hover:text-[#8bc63f] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8bc63f]"
